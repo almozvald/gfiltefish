@@ -1,0 +1,11 @@
+{
+  "name": "gfiltafish",
+  "version": "1.0.0",
+  "description": "bot",
+  "main": "bot.js",
+  "author": "Almoz",
+  "dependencies": {
+    "discord.js": "^12.0.2",
+    "request": "^2.88.2"
+  }
+}
