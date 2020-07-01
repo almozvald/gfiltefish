@@ -162,31 +162,35 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 		if (message.indexOf(client.user.id) != -1 || message.indexOf(client.user.username) != -1) {
 			logger.info('bot.id: '+message.indexOf(client.user.id));
 			logger.info('bot.username: '+message.indexOf(client.user.username));
-			//logger.info('end: '+message.indexOf('safasfhfhfbw'));
 			var possibleresponses=['מי זה מדבר עלי?', 'מה אתה רוצה ממני?','הי מה אתה חושב שאתה אומר עלי?'];
 			channel.send(possibleresponses[Math.floor(Math.random() * possibleresponses.length)] + '\n נסה ~help לעזרה בשביל להבין עלי יותר');
 			return;
 		}
 		
-		if (message.indexOf("כרמי")!=-1) {
+		if (message.indexOf("כרמי")!=-1||message.indexOf("282820918298804224")) {
 			const emoji = msg.guild.emojis.cache.get('423207044578017281');
 			if (emoji)
 				msg.react(emoji);
 			var possibleresponses=['1+e^i(pi)', '0','אפס'];
 			channel.send(possibleresponses[Math.floor(Math.random() * possibleresponses.length)]);
 		}
-		if (message.indexOf("בניו")!=-1){
+		if (message.indexOf("בניו")!=-1||message.indexOf("241089053485694976")){
 			const emoji = msg.guild.emojis.cache.get('393866050585886721');
 			if (emoji)
 				msg.react(emoji);
 		}
-		if (message.indexOf("אבן")!=-1){
+		if (message.indexOf("אבן")!=-1||message.indexOf("373464832516554763")){
 			const emoji = msg.guild.emojis.cache.get('423208712560443412');
 			if (emoji)
 				msg.react(emoji);
 		}
-		if (message.indexOf("שמש")!=-1){
+		if (message.indexOf("שמש")!=-1||message.indexOf("241888352880689163")){
 			const emoji = msg.guild.emojis.cache.get('725825841757552730');
+			if (emoji)
+				msg.react(emoji);
+		}
+		if (message.indexOf("אלמוג")!=-1||message.indexOf("אלמוז")!=-1||message.indexOf("571358652376547328")){
+			const emoji = msg.guild.emojis.cache.get('728028454058197003');
 			if (emoji)
 				msg.react(emoji);
 		}
