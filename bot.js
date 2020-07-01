@@ -77,6 +77,7 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 					'מצורפת רשימה של כל הפקודות החוקיות:',
 					'~help '+' קבל את ההודעה הזאת',
 					'~ping '+'בדוק האם הבוט הזה חי',
+					'~sourcecode '+'קבל את קוד המקור של הבוט הזה',
 					'~shutup ' +' אמור להשתיק אותו כן בטח ',
 					'~unshutup ' +' יוציא אותו מהשתקה ',
 					'~randomquote ' +' הדפס ציטוט אקראי ',
@@ -102,6 +103,15 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 			case 'unshutup':
 				shutup = false;
 				channel.send('<@' +userID+'> תודה לך צדיק');
+				break;
+			case 'hhbetza':
+				channel.send('https://i.imgur.com/AVDMBal.png');
+				break;
+			case 'sourcecode':
+			case 'github':
+			case 'source':
+			case 'src':
+				channel.send('https://github.com/almozvald/gfiltafish');
 				break;
 			case 'repeat':
 				logger.info(channel);
@@ -167,34 +177,36 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 			return;
 		}
 		
-		if (message.indexOf("כרמי")!=-1||message.indexOf("282820918298804224")) {
+		if (message.indexOf("כרמי")!=-1||message.indexOf("282820918298804224")!=-1) {
 			const emoji = msg.guild.emojis.cache.get('423207044578017281');
 			if (emoji)
 				msg.react(emoji);
 			var possibleresponses=['1+e^i(pi)', '0','אפס'];
 			channel.send(possibleresponses[Math.floor(Math.random() * possibleresponses.length)]);
 		}
-		if (message.indexOf("בניו")!=-1||message.indexOf("241089053485694976")){
+		if (message.indexOf("בניו")!=-1||message.indexOf("241089053485694976")!=-1){
 			const emoji = msg.guild.emojis.cache.get('393866050585886721');
 			if (emoji)
 				msg.react(emoji);
 		}
-		if (message.indexOf("אבן")!=-1||message.indexOf("373464832516554763")){
+		if (message.indexOf("אבן")!=-1||message.indexOf("373464832516554763")!=-1){
 			const emoji = msg.guild.emojis.cache.get('423208712560443412');
 			if (emoji)
 				msg.react(emoji);
 		}
-		if (message.indexOf("שמש")!=-1||message.indexOf("241888352880689163")){
+		if (message.indexOf("שמש")!=-1||message.indexOf("241888352880689163")!=-1){
 			const emoji = msg.guild.emojis.cache.get('725825841757552730');
 			if (emoji)
 				msg.react(emoji);
 		}
-		if (message.indexOf("אלמוג")!=-1||message.indexOf("אלמוז")!=-1||message.indexOf("571358652376547328")){
+		if (message.indexOf("אלמוג")!=-1||message.indexOf("אלמוז")!=-1||message.indexOf("571358652376547328")!=-1){
 			const emoji = msg.guild.emojis.cache.get('728028454058197003');
 			if (emoji)
 				msg.react(emoji);
 		}
-		
+		if (message.indexOf("חח בצה")!=-1){
+			channel.send('https://i.imgur.com/AVDMBal.png');
+		}
 		if(Math.random()<0.003){
 			var possibleresponses=['שתוק'];
 			channel.send('<@' +userID+'> '+possibleresponses[Math.floor(Math.random()*possibleresponses.length)]);
