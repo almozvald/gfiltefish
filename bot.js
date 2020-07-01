@@ -71,6 +71,9 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 		args = args.splice(1);
 		switch (cmd) {
 			case 'help':
+			case 'h':
+			case 'iamdumb':
+			case 'carmi':
 				var message='';
 
 				var documntation=['ברוך הבא לגפילטאפיש גרסא 1.0.1',
@@ -94,12 +97,15 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 				channel.send(message);
 				break;
 			case 'ping':
+			case 'hello':
 				channel.send('אני חי כמו תמיד');
 				break;
+			case 'mute':
 			case 'shutup':
 				shutup = true;
 				channel.send('<@' +userID+'> אוקי אבל גם אתה');
 				break;
+			case 'unmute':
 			case 'unshutup':
 				shutup = false;
 				channel.send('<@' +userID+'> תודה לך צדיק');
