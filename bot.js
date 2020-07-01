@@ -119,6 +119,14 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 			case 'src':
 				channel.send('https://github.com/almozvald/gfiltafish');
 				break;
+			case 'rickroll':
+				var possibleresponses=['קבלו איפון 23 חינם','צפו בתמונות עירום של בניו','זהו אינו קישור לשיר אינני הולך לותר עליך על ידי ריק אסטלי','קבלו את התפקיד חציל בתריק הפשוט הבא'];
+				const embed = new Discord.MessageEmbed()
+				.setTitle(possibleresponses[Math.floor(Math.random() * possibleresponses.length)])
+				.setColor(0x0000ff)
+				.setURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+				channel.send(embed);
+				break;
 			case 'repeat':
 				logger.info(channel);
 				var message = '';
