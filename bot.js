@@ -10,31 +10,32 @@ client.login(auth.token);
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
-    colorize: true
+	colorize: true
 });
 
 logger.level = 'debug';
 
 // Initialize Discord Bot
 var bot = new Discord.Client({
-   token: auth.token,
-   autorun: true
+	token: auth.token,
+	autorun: true
 });
 
 var prefix = '~';
 var ids = [];
 
 client.on('ready', () => {
-    logger.info('Connected');
-    logger.info('Logged in as: ');
-    logger.info(client.user.username + ' - (' + client.user.id + ')');;
+	logger.info('Connected');
+	logger.info('Logged in as: ');
+	logger.info(client.user.username + ' - (' + client.user.id + ')');;
 });
 
 var curchannel;
 
-var quotes=['זה ספר - מין דבר מלבני כזה עם דפים',
-	'אני מאמין בחומוס',"אם חם לכם יותר מדי צאו מהמטבח",
+var quotes=["זה ספר - מין דבר מלבני כזה עם דפים",
+	"אני מאמין בחומוס" ,"אם חם לכם יותר מדי צאו מהמטבח",
 	"אבא שלי אמר לי: לעולם לא תהיה גמל, נולדת חמור",
+	"דיבורים כמו חול ואין מה לאכול", "טוגנים",
 	"אין מה לעשות בפ״ת אפילו כשאין קורונה."];
 
 var randomquote = function (channelID) {
@@ -76,17 +77,17 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 			case 'carmi':
 				var message='';
 
-				var documntation=['ברוך הבא לגפילטאפיש גרסא 1.0.1',
-					'מצורפת רשימה של כל הפקודות החוקיות:',
-					'~help '+' קבל את ההודעה הזאת',
-					'~ping '+'בדוק האם הבוט הזה חי',
-					'~sourcecode '+'קבל את קוד המקור של הבוט הזה',
-					'~shutup ' +' אמור להשתיק אותו כן בטח ',
-					'~unshutup ' +' יוציא אותו מהשתקה ',
-					'~randomquote ' +' הדפס ציטוט אקראי ',
-					'~allquote ' +' הדפס את כל הציטוטים ',
-					'~repeat '+'כדי לשלוט בכמה פעמים וכמה זמן הוא יחכה בין פעם לפעם' +' wait, times '+' חזור על אותה הודעה כמה פעמים ניתן להשתמש ב ',
-					''
+				var documntation=["ברוך הבא לגפילטאפיש גרסא 1.0.2",
+					"מצורפת רשימה של כל הפקודות החוקיות:",
+					"~help " + " קבל את ההודעה הזאת",
+					"~ping " + "בדוק האם הבוט הזה חי",
+					"~sourcecode " + "קבל את קוד המקור של הבוט הזה",
+					"~shutup " + " אמור להשתיק אותו כן בטח ",
+					"~unshutup " + " יוציא אותו מהשתקה ",
+					"~randomquote ' +' הדפס ציטוט אקראי ",
+					"~allquote " + " הדפס את כל הציטוטים ",
+					"~repeat " + "כדי לשלוט בכמה פעמים וכמה זמן הוא יחכה בין פעם לפעם" + " wait, times " + " חזור על אותה הודעה כמה פעמים ניתן להשתמש ב ",
+					""
 				];
 
 				documntation[documntation.length - 1] = shutup ? '~repeat'+'הבוט כרגע מושתק אז שום הודעה לא תקרה עם תשתמש ב' : 'בוט כרגע לא מושתק אז'+' repeat~ '+'עובד לכולם';
@@ -97,6 +98,8 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 				channel.send(message);
 				break;
 			case 'ping':
+				channel.send('פונג');
+				break;
 			case 'hello':
 				channel.send('אני חי כמו תמיד');
 				break;
