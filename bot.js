@@ -103,7 +103,7 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 			case 'mute':
 			case 'shutup':
 				shutup = true;
-				channel.send('<@' +userID+'> אוקי אבל גם אתה');
+				channel.send('<@' +userID+'> טוב אני אשב לי לבד בחושך');
 				break;
 			case 'unmute':
 			case 'unshutup':
