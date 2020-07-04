@@ -1,15 +1,9 @@
 var Discord = require('discord.js');
 var logger = require('winston');
 var auth = require('./auth.json');
-var request = require('request');
-var people = [
-	{names:["כרמי","282820918298804224"], id:0, emoji:"423207044578017281"},
-	{names:["בניו","241089053485694976"], id:1, emoji:"393866050585886721"},
-	{names:["אבן","373464832516554763"], id:2, emoji:"423208712560443412"},
-	{names:["שמש","241888352880689163"], id:3, emoji:"725825841757552730"},
-	{names:["אלמוג","אלמוז","571358652376547328"], id:4, emoji:"728028454058197003"},
-	{names:["בקר","218387373501841408"], id:5, emoji:"729013236279803945"},
-];
+var data = require('./data.json');
+var people = data.people;
+var quotes= data.quotes;
 const client = new Discord.Client();
 client.login(auth.token);
 'use strict';
@@ -39,11 +33,7 @@ client.on('ready', () => {
 
 var curchannel;
 
-var quotes=["זה ספר - מין דבר מלבני כזה עם דפים",
-	"אני מאמין בחומוס" ,"אם חם לכם יותר מדי צאו מהמטבח",
-	"אבא שלי אמר לי: לעולם לא תהיה גמל, נולדת חמור",
-	"דיבורים כמו חול ואין מה לאכול", "טוגנים",
-	"אין מה לעשות בפ״ת אפילו כשאין קורונה."];
+
 
 var randomquote = function (channelID) {
 	curchannel.send(quotes[Math.floor(Math.random() * quotes.length)]);
@@ -82,7 +72,7 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 			case 'carmi':
 				var message='';
 
-				var documntation=["ברוך הבא לגפילטאפיש גרסא 1.0.2",
+				var documntation=["ברוך הבא לגפילטאפיש גרסא 1.0.3",
 					"מצורפת רשימה של כל הפקודות החוקיות:",
 					"~help " + " קבל את ההודעה הזאת",
 					"~ping " + "בדוק האם הבוט הזה חי",
@@ -91,6 +81,7 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 					"~unshutup " + " יוציא אותו מהשתקה ",
 					"~randomquote ' +' הדפס ציטוט אקראי ",
 					"~allquote " + " הדפס את כל הציטוטים ",
+					"~load " + " ./data.json טען מחדש את  ",
 					"~repeat " + "כדי לשלוט בכמה פעמים וכמה זמן הוא יחכה בין פעם לפעם" + " wait, times " + " חזור על אותה הודעה כמה פעמים ניתן להשתמש ב ",
 					""
 				];
@@ -117,6 +108,22 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 			case 'unshutup':
 				shutup = false;
 				channel.send('<@' +userID+'> תודה לך צדיק');
+				break;
+			case 'load':
+			case 'reload':
+				var fs = require('fs');
+				fs.readFile('./data.json', function (err, newdata) {
+					if (err) {
+						throw err; 
+					}
+					logger.info(data);
+					data = JSON.parse(newdata);
+					people = data.people;
+					quotes= data.quotes;
+					channel.send('נטען בהצלחה!');
+				});
+				//people = require('./peoples.json');
+				channel.send('טוען מחדש');
 				break;
 			case 'hhbetza':
 				channel.send('https://i.imgur.com/AVDMBal.png');
