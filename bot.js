@@ -14,7 +14,7 @@ logger.add(new logger.transports.Console, {
 	colorize: true
 });
 
-logger.level = 'debug';
+logger.level = "debug";
 
 // Initialize Discord Bot
 var bot = new Discord.Client({
@@ -25,15 +25,13 @@ var bot = new Discord.Client({
 var prefix = '~';
 var ids = [];
 
-client.on('ready', () => {
-	logger.info('Connected');
-	logger.info('Logged in as: ');
-	logger.info(client.user.username + ' - (' + client.user.id + ')');;
+client.on("ready", () => {
+	logger.info("Connected");
+	logger.info("Logged in as: ");
+	logger.info(client.user.username + " - (" + client.user.id + ")");
 });
 
 var curchannel;
-
-
 
 var randomquote = function (channelID) {
 	curchannel.send(quotes[Math.floor(Math.random() * quotes.length)]);
@@ -45,7 +43,7 @@ var allquote = function (channelID) {
 }
 
 
-var shutup =false;
+var shutup = false;
 var intervaled = function(annoychannel, annoymessage, timesleft , interval){
 	if (timesleft > 0 && !shutup){
 		annoychannel.send(annoymessage);
@@ -54,7 +52,7 @@ var intervaled = function(annoychannel, annoymessage, timesleft , interval){
 	}
 }
 
-client.on('message', msg => {//(user, userID, channelID, message, evt) 
+client.on("message", msg => {//(user, userID, channelID, message, evt) 
 	var message = msg.content;
 	var user = msg.author;
 	var userID = user.id;
@@ -62,17 +60,17 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 	var channelID = msg.channel.id;
 	if (message.substring(0, prefix.length) == prefix) {// a direct call for gfiltafish
 		curchannel = channel;
-		var args = message.substring(prefix.length).split(' ');
+		var args = message.substring(prefix.length).split(" ");
 		var cmd = args[0];
 		args = args.splice(1);
 		switch (cmd) {
-			case 'help':
-			case 'h':
-			case 'iamdumb':
-			case 'carmi':
-				var message='';
+			case "help":
+			case "h":
+			case "iamdumb":
+			case "carmi":
+				var message="";
 
-				var documntation=["ברוך הבא לגפילטאפיש גרסא 1.0.3",
+				var documntation=["ברוך הבא לגפילטאפיש גרסא 1.0.4",
 					"מצורפת רשימה של כל הפקודות החוקיות:",
 					"~help " + " קבל את ההודעה הזאת",
 					"~ping " + "בדוק האם הבוט הזה חי",
@@ -86,151 +84,162 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 					""
 				];
 
-				documntation[documntation.length - 1] = shutup ? '~repeat'+'הבוט כרגע מושתק אז שום הודעה לא תקרה עם תשתמש ב' : 'בוט כרגע לא מושתק אז'+' repeat~ '+'עובד לכולם';
+				documntation[documntation.length - 1] = shutup ? '~repeat' + 'הבוט כרגע מושתק אז שום הודעה לא תקרה עם תשתמש ב' : 'בוט כרגע לא מושתק אז' + ' repeat~ ' + 'עובד לכולם';
 			
 				for (var i = 0; i < documntation.length; i++)
 					message += documntation[i] + '\n';
 				
 				channel.send(message);
 				break;
-			case 'ping':
-				channel.send('פונג');
+			case "ping":
+				channel.send("פונג");
 				break;
-			case 'hello':
-				channel.send('אני חי כמו תמיד');
+			case "hello":
+				channel.send("אני חי כמו תמיד");
 				break;
-			case 'mute':
-			case 'shutup':
+			case "mute":
+			case "shutup":
 				shutup = true;
-				channel.send('<@' +userID+'> טוב אני אשב לי לבד בחושך');
+				channel.send("<@" + userID + "> טוב אני אשב לי לבד בחושך");
 				break;
-			case 'unmute':
-			case 'unshutup':
+			case "unmute":
+			case "unshutup":
 				shutup = false;
-				channel.send('<@' +userID+'> תודה לך צדיק');
+				channel.send("<@" + userID + "> תודה לך צדיק");
 				break;
-			case 'load':
-			case 'reload':
-				var fs = require('fs');
+			case "load":
+			case "reload":
+				var fs = require("fs");
 				fs.readFile('./data.json', function (err, newdata) {
-					if (err) {
+					if (err)
 						throw err; 
-					}
+					
 					logger.info(data);
 					data = JSON.parse(newdata);
 					people = data.people;
-					quotes= data.quotes;
-					channel.send('נטען בהצלחה!');
+					quotes = data.quotes;
+					channel.send("נטען בהצלחה!");
 				});
-				//people = require('./peoples.json');
-				channel.send('טוען מחדש');
+				
+				channel.send("טוען מחדש");
 				break;
-			case 'hhbetza':
-				channel.send('https://i.imgur.com/AVDMBal.png');
+			case "hhbetza":
+				channel.send("https://i.imgur.com/AVDMBal.png");
 				break;
-			case 'sourcecode':
-			case 'github':
-			case 'source':
-			case 'src':
+			case "sourcecode":
+			case "github":
+			case "source":
+			case "src":
 				channel.send('https://github.com/almozvald/gfiltafish');
 				break;
-			case 'rickroll':
-				var possibleresponses=['קבלו איפון 23 חינם','צפו בתמונות עירום של בניו','זהו אינו קישור לשיר אינני הולך לותר עליך על ידי ריק אסטלי','קבלו את התפקיד חציל בתריק הפשוט הבא'];
+			case "rickroll":
+				var possibleresponses = ["קבלו איפון 23 חינם','צפו בתמונות עירום של בניו",
+					"זהו אינו קישור לשיר אינני הולך לותר עליך על ידי ריק אסטלי",
+					"קבלו את התפקיד חציל בתריק הפשוט הבא"];
+				
 				const embed = new Discord.MessageEmbed()
-				.setTitle(possibleresponses[Math.floor(Math.random() * possibleresponses.length)])
-				.setColor(0x0000ff)
-				.setURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+					.setTitle(possibleresponses[Math.floor(Math.random() * possibleresponses.length)])
+					.setColor(0x0000ff)
+					.setURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+					
 				channel.send(embed);
 				break;
-			case 'repeat':
+			case "repeat":
 				logger.info(channel);
-				var message = '';
+				var message = "";
 				var timesleft = 10;
 				var interval = 2000;
 				for (var i = 0; i < args.length; i++) {
-					if (args[i] == 'times') {
-						timesleft=Number(args[i + 1]);
+					if (args[i] == "times") {
+						timesleft = Number(args[i + 1]);
 						i++;
 						continue;
 						if (timesleft > 200) {
-							channel.send('<@' +userID+'> '+'מגבלת כמות חזרות מקסימלית כרגע עומדת על 200');
+							channel.send("<@" + userID + "> " + "מגבלת כמות חזרות מקסימלית כרגע עומדת על 200");
 							timesleft = 200;
 							break;
 						}
 					}
-					if (args[i] == 'wait') {
+					if (args[i] == "wait") {
 						interval = 1000 * Number(args[i + 1]);
 						i++;
 						if (interval < 1000) {
-							channel.send('<@' +userID+'> '+'מגבלה בין חזרה לחזרה עומדת על שנייה');
+							channel.send("<@" + userID + "> " + "מגבלה בין חזרה לחזרה עומדת על שנייה");
 							interval = 1000;
 							break;
 						}
 						continue;
 					}
-					if (args[i] == 'channel') {
+					if (args[i] == "channel") {
 						channel= client.channels.cache.get(args[i + 1]);
 						i++;
 						continue;
 					}
-					if (args[i] == '~repeat') {
-						channel.send('<@' +userID+'> '+'אין לך הרשאות לבצע פעולה זאת וגם לא לאף אחד אחר');
+					if (args[i] == "~repeat") {
+						channel.send("<@" + userID + "> " + "אין לך הרשאות לבצע פעולה זאת וגם לא לאף אחד אחר");
 						timesleft = 0;
-					break;
+						break;
 					}
-					message += args[i]+' ';
+					message += args[i] + " ";
 				}
-				intervaled(channel,message,timesleft,interval);
+				intervaled(channel, message, timesleft, interval);
 				break;
-			case 'randomquote':
+			case "randomquote":
 				randomquote(channelID);
 				break;
-			case 'allquote':
+			case "allquote":
 				allquote(channelID);
 				break;
 			default :
-				channel.send(':לא ממש הבנתי מה אתה מנסה להגיד הפקודות החוקיות הן' + '\n~help');
+				channel.send(":לא ממש הבנתי מה אתה מנסה להגיד הפקודות החוקיות הן" + "\n~help");
 		}
 	} else {
 		if (user.bot) {
-			//logger.info('meesage by bot');
 			return;
-			logger.info('what?');
+			logger.info("what?");
 		}
 		
 		if (message.indexOf(client.user.id) != -1 || message.indexOf(client.user.username) != -1) {
-			logger.info('bot.id: '+message.indexOf(client.user.id));
-			logger.info('bot.username: '+message.indexOf(client.user.username));
-			var possibleresponses=['מי זה מדבר עלי?', 'מה אתה רוצה ממני?','הי מה אתה חושב שאתה אומר עלי?'];
-			channel.send(possibleresponses[Math.floor(Math.random() * possibleresponses.length)] + '\n נסה ~help לעזרה בשביל להבין עלי יותר');
+			logger.info("bot.id: " + message.indexOf(client.user.id));
+			logger.info("bot.username: " + message.indexOf(client.user.username));
+			var possibleresponses = ["מי זה מדבר עלי?" ,"מה אתה רוצה ממני?" ,"הי מה אתה חושב שאתה אומר עלי?"];
+			channel.send(possibleresponses[Math.floor(Math.random() * possibleresponses.length)] + "\n נסה ~help לעזרה בשביל להבין עלי יותר");
 			return;
 		}
 		
-		if (message.indexOf("כרמי")!=-1||message.indexOf("282820918298804224")!=-1) {
-			var possibleresponses=['1+e^i(pi)', '0','אפס'];
+		if (message.indexOf("כרמי") != -1 || message.indexOf("282820918298804224") != -1) {
+			var possibleresponses=["1+e^i(pi)", "0", "אפס"];
 			channel.send(possibleresponses[Math.floor(Math.random() * possibleresponses.length)]);
 		}
-		for(var i = 0; i < people.length; i++){
+		
+		for (var i = 0; i < people.length; i++){
 			var found = false;
-			for(var j = 0; j < people[i].names.length; j++){
-				if (message.indexOf( people[i].names[j])!=-1){
+			for (var j = 0; j < people[i].names.length; j++){
+				if (message.indexOf(people[i].names[j]) != -1){
 					found = true;
 					break;
 				}
 			}
-			if(msg.guild && msg.guild.emojis && found){
+			if (msg.guild && msg.guild.emojis && found) {
 				const emoji = msg.guild.emojis.cache.get(people[i].emoji);
 				if (emoji)
 					msg.react(emoji);
 			}
 		}
-		if (message.indexOf("חח בצה")!=-1){
-			channel.send('https://i.imgur.com/AVDMBal.png');
+		
+		if (message.indexOf("פולין") != -1 || message.indexOf("polin") != -1) {
+			const emoji = msg.guild.emojis.cache.get(':flag_pl:');
+			if (emoji)
+				msg.react(emoji);
 		}
-		if(Math.random()<0.01){
+		
+		if (message.indexOf("חח בצה") != -1)
+			channel.send("https://i.imgur.com/AVDMBal.png");
+		
+		if (Math.random() < 0.01) {
 			var possibleresponses=['שתוק'];
-			channel.send('<@' +userID+'> '+possibleresponses[Math.floor(Math.random()*possibleresponses.length)]);
-			logger.info('answering random message');
+			channel.send("<@" + userID + "> " + possibleresponses[Math.floor(Math.random() * possibleresponses.length)]);
+			logger.info("answering random message");
 		}
 
 	}
