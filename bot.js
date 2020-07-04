@@ -2,7 +2,14 @@ var Discord = require('discord.js');
 var logger = require('winston');
 var auth = require('./auth.json');
 var request = require('request');
-
+var people = [
+	{names:["כרמי","282820918298804224"], id:0, emoji:"423207044578017281"},
+	{names:["בניו","241089053485694976"], id:1, emoji:"393866050585886721"},
+	{names:["אבן","373464832516554763"], id:2, emoji:"423208712560443412"},
+	{names:["שמש","241888352880689163"], id:3, emoji:"725825841757552730"},
+	{names:["אלמוג","אלמוז","571358652376547328"], id:4, emoji:"728028454058197003"},
+	{names:["בקר","218387373501841408"], id:5, emoji:"729013236279803945"},
+];
 const client = new Discord.Client();
 client.login(auth.token);
 'use strict';
@@ -63,12 +70,10 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 	var userID = user.id;
 	var channel = msg.channel;
 	var channelID = msg.channel.id;
-	
-	if (message.substring(0, prefix.length) == prefix) {// a direct call for nezerbot
+	if (message.substring(0, prefix.length) == prefix) {// a direct call for gfiltafish
 		curchannel = channel;
 		var args = message.substring(prefix.length).split(' ');
 		var cmd = args[0];
-
 		args = args.splice(1);
 		switch (cmd) {
 			case 'help':
@@ -181,7 +186,7 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 		}
 	} else {
 		if (user.bot) {
-			logger.info('meesage by bot');
+			//logger.info('meesage by bot');
 			return;
 			logger.info('what?');
 		}
@@ -195,36 +200,27 @@ client.on('message', msg => {//(user, userID, channelID, message, evt)
 		}
 		
 		if (message.indexOf("כרמי")!=-1||message.indexOf("282820918298804224")!=-1) {
-			const emoji = msg.guild.emojis.cache.get('423207044578017281');
-			if (emoji)
-				msg.react(emoji);
 			var possibleresponses=['1+e^i(pi)', '0','אפס'];
 			channel.send(possibleresponses[Math.floor(Math.random() * possibleresponses.length)]);
 		}
-		if (message.indexOf("בניו")!=-1||message.indexOf("241089053485694976")!=-1){
-			const emoji = msg.guild.emojis.cache.get('393866050585886721');
-			if (emoji)
-				msg.react(emoji);
-		}
-		if (message.indexOf("אבן")!=-1||message.indexOf("373464832516554763")!=-1){
-			const emoji = msg.guild.emojis.cache.get('423208712560443412');
-			if (emoji)
-				msg.react(emoji);
-		}
-		if (message.indexOf("שמש")!=-1||message.indexOf("241888352880689163")!=-1){
-			const emoji = msg.guild.emojis.cache.get('725825841757552730');
-			if (emoji)
-				msg.react(emoji);
-		}
-		if (message.indexOf("אלמוג")!=-1||message.indexOf("אלמוז")!=-1||message.indexOf("571358652376547328")!=-1){
-			const emoji = msg.guild.emojis.cache.get('728028454058197003');
-			if (emoji)
-				msg.react(emoji);
+		for(var i = 0; i < people.length; i++){
+			var found = false;
+			for(var j = 0; j < people[i].names.length; j++){
+				if (message.indexOf( people[i].names[j])!=-1){
+					found = true;
+					break;
+				}
+			}
+			if(msg.guild && msg.guild.emojis && found){
+				const emoji = msg.guild.emojis.cache.get(people[i].emoji);
+				if (emoji)
+					msg.react(emoji);
+			}
 		}
 		if (message.indexOf("חח בצה")!=-1){
 			channel.send('https://i.imgur.com/AVDMBal.png');
 		}
-		if(Math.random()<0.003){
+		if(Math.random()<0.01){
 			var possibleresponses=['שתוק'];
 			channel.send('<@' +userID+'> '+possibleresponses[Math.floor(Math.random()*possibleresponses.length)]);
 			logger.info('answering random message');
