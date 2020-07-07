@@ -59,7 +59,7 @@ client.on("message", msg => { // (user, userID, channelID, message, evt)
 	var channel = msg.channel;
 	var channelID = msg.channel.id;
 	
-	if (message.substring(0, prefix.length) == prefix) { // A direct call for gfiltafish
+	if (message.substring(0, prefix.length) == prefix) { // A direct call for gfiltefish
 		curchannel = channel;
 		var args = message.substring(prefix.length).split(" ");
 		var cmd = args[0];
@@ -132,7 +132,7 @@ client.on("message", msg => { // (user, userID, channelID, message, evt)
 			case "github":
 			case "source":
 			case "src":
-				channel.send('https://github.com/almozvald/gfiltafish');
+				channel.send('https://github.com/almozvald/gfiltefish');
 				break;
 			case "rickroll":
 				var possibleresponses = ["קבלו איפון 23 חינם','צפו בתמונות עירום של בניו",
