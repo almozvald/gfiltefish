@@ -235,7 +235,7 @@ client.on("message", msg => { // (user, userID, channelID, message, evt)
 			msg.react(":flag_pl:");
 		
 		if (message.indexOf("חח בצה") != -1)
-			channel.send("https://i.imgur.com/AVDMBal.png");
+			channel.send("", {files: ["https://i.imgur.com/AVDMBal.png"]});
 		
 		if (message.indexOf("אמור") != -1)
 			channel.send("אמור זה שם של דג");
