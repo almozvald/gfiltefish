@@ -3,7 +3,7 @@ var logger = require('winston');
 var auth = require('./auth.json');
 var data = require('./data.json');
 var people = data.people;
-var quotes= data.quotes;
+var quotes = data.quotes;
 const client = new Discord.Client();
 client.login(auth.token);
 'use strict';
@@ -44,21 +44,22 @@ var allquote = function (channelID) {
 
 
 var shutup = false;
-var intervaled = function(annoychannel, annoymessage, timesleft , interval){
-	if (timesleft > 0 && !shutup){
+var intervaled = function(annoychannel, annoymessage, timesleft , interval) {
+	if (timesleft > 0 && !shutup) {
 		annoychannel.send(annoymessage);
 		timesleft--;
-		setTimeout(function(){intervaled(annoychannel,annoymessage,timesleft,interval);}, interval);
+		setTimeout(function() { intervaled(annoychannel, annoymessage, timesleft, interval); }, interval);
 	}
 }
 
-client.on("message", msg => {//(user, userID, channelID, message, evt) 
+client.on("message", msg => { // (user, userID, channelID, message, evt) 
 	var message = msg.content;
 	var user = msg.author;
 	var userID = user.id;
 	var channel = msg.channel;
 	var channelID = msg.channel.id;
-	if (message.substring(0, prefix.length) == prefix) {// a direct call for gfiltafish
+	
+	if (message.substring(0, prefix.length) == prefix) { // A direct call for gfiltafish
 		curchannel = channel;
 		var args = message.substring(prefix.length).split(" ");
 		var cmd = args[0];
@@ -70,17 +71,18 @@ client.on("message", msg => {//(user, userID, channelID, message, evt)
 			case "carmi":
 				var message="";
 
-				var documntation=["ברוך הבא לגפילטאפיש גרסא 1.0.4",
+				var documntation = [
+					"ברוך הבא לגפילטאפיש גרסא 1.0.5",
 					"מצורפת רשימה של כל הפקודות החוקיות:",
 					"~help " + " קבל את ההודעה הזאת",
-					"~ping " + "בדוק האם הבוט הזה חי",
-					"~sourcecode " + "קבל את קוד המקור של הבוט הזה",
-					"~shutup " + " אמור להשתיק אותו כן בטח ",
-					"~unshutup " + " יוציא אותו מהשתקה ",
-					"~randomquote ' +' הדפס ציטוט אקראי ",
-					"~allquote " + " הדפס את כל הציטוטים ",
+					"~ping " + " בדוק האם הבוט הזה חי",
+					"~sourcecode " + " קבל את קוד המקור של הבוט הזה",
+					"~shutup " + " אמור להשתיק אותו כן בטח",
+					"~unshutup " + " יוציא אותו מהשתקה",
+					"~randomquote " + " הדפס ציטוט אקראי",
+					"~allquote " + " הדפס את כל הציטוטים",
 					"~load " + " ./data.json טען מחדש את  ",
-					"~repeat " + "כדי לשלוט בכמה פעמים וכמה זמן הוא יחכה בין פעם לפעם" + " wait, times " + " חזור על אותה הודעה כמה פעמים ניתן להשתמש ב ",
+					"~repeat " + " כדי לשלוט בכמה פעמים וכמה זמן הוא יחכה בין פעם לפעם" + " wait, times " + " חזור על אותה הודעה כמה פעמים ניתן להשתמש ב ",
 					""
 				];
 
@@ -185,9 +187,11 @@ client.on("message", msg => {//(user, userID, channelID, message, evt)
 				intervaled(channel, message, timesleft, interval);
 				break;
 			case "randomquote":
+			case "rndq":
 				randomquote(channelID);
 				break;
 			case "allquote":
+			case "allq":
 				allquote(channelID);
 				break;
 			default :
@@ -212,10 +216,10 @@ client.on("message", msg => {//(user, userID, channelID, message, evt)
 			channel.send(possibleresponses[Math.floor(Math.random() * possibleresponses.length)]);
 		}
 		
-		for (var i = 0; i < people.length; i++){
+		for (var i = 0; i < people.length; i++) {
 			var found = false;
-			for (var j = 0; j < people[i].names.length; j++){
-				if (message.indexOf(people[i].names[j]) != -1){
+			for (var j = 0; j < people[i].names.length; j++) {
+				if (message.indexOf(people[i].names[j]) != -1) {
 					found = true;
 					break;
 				}
@@ -227,14 +231,14 @@ client.on("message", msg => {//(user, userID, channelID, message, evt)
 			}
 		}
 		
-		if (message.indexOf("פולין") != -1 || message.indexOf("polin") != -1) {
-			const emoji = msg.guild.emojis.cache.get(':flag_pl:');
-			if (emoji)
-				msg.react(emoji);
-		}
+		if (message.indexOf("פולין") != -1 || message.indexOf("polin") != -1)
+			msg.react(":flag_pl:");
 		
 		if (message.indexOf("חח בצה") != -1)
 			channel.send("https://i.imgur.com/AVDMBal.png");
+		
+		if (message.indexOf("אמור") != -1)
+			channel.send("אמור זה שם של דג");
 		
 		if (Math.random() < 0.01) {
 			var possibleresponses=['שתוק'];
