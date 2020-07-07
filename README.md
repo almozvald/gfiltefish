@@ -1,9 +1,14 @@
-# gfiltafish
+# gfiltefish
 bot for discord
 
-#how to use
-install node.js
-insert your own token auth.json with the template give
-cmd npm link winston
-cmd node bot.js
-done
+## Building
+```
+1. Install node.js  
+2. Insert your own token auth.json with the template give  
+3. cmd npm link winston
+4. cmd node bot.js
+```
+
+### Credits:
+- [almozvald](https://github.com/almozvald)
+- [Electric1447](https://github.com/Electric1447)
