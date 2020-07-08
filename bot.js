@@ -232,7 +232,7 @@ client.on("message", msg => { // (user, userID, channelID, message, evt)
 		}
 		
 		if (message.indexOf("פולין") != -1 || message.indexOf("polin") != -1)
-			msg.react(":flag_pl:");
+			msg.react("🇵🇱");
 		
 		if (message.indexOf("חח בצה") != -1)
 			channel.send("", {files: ["https://i.imgur.com/AVDMBal.png"]});
