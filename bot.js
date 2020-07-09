@@ -58,7 +58,22 @@ client.on("message", msg => { // (user, userID, channelID, message, evt)
 	var userID = user.id;
 	var channel = msg.channel;
 	var channelID = msg.channel.id;
-	
+	if (message.indexOf("פולין") != -1 || message.indexOf("polin") != -1)
+			msg.react("🇵🇱");
+	for (var i = 0; i < people.length; i++) {
+			var found = false;
+			for (var j = 0; j < people[i].names.length; j++) {
+				if (message.indexOf(people[i].names[j]) != -1) {
+					found = true;
+					break;
+				}
+			}
+			if (msg.guild && msg.guild.emojis && found) {
+				const emoji = msg.guild.emojis.cache.get(people[i].emoji);
+				if (emoji)
+					msg.react(emoji);
+			}
+		}
 	if (message.substring(0, prefix.length) == prefix) { // A direct call for gfiltefish
 		curchannel = channel;
 		var args = message.substring(prefix.length).split(" ");
@@ -72,7 +87,7 @@ client.on("message", msg => { // (user, userID, channelID, message, evt)
 				var message="";
 
 				var documntation = [
-					"ברוך הבא לגפילטאפיש גרסא 1.0.5",
+					"ברוך הבא לגפילטאפיש גרסא 1.1.0",
 					"מצורפת רשימה של כל הפקודות החוקיות:",
 					"~help " + " קבל את ההודעה הזאת",
 					"~ping " + " בדוק האם הבוט הזה חי",
@@ -81,6 +96,7 @@ client.on("message", msg => { // (user, userID, channelID, message, evt)
 					"~unshutup " + " יוציא אותו מהשתקה",
 					"~randomquote " + " הדפס ציטוט אקראי",
 					"~allquote " + " הדפס את כל הציטוטים",
+					"~polin " + " לפולין userchannels העבר את כל האנשים שב ",
 					"~load " + " ./data.json טען מחדש את  ",
 					"~repeat " + " כדי לשלוט בכמה פעמים וכמה זמן הוא יחכה בין פעם לפעם" + " wait, times " + " חזור על אותה הודעה כמה פעמים ניתן להשתמש ב ",
 					""
@@ -108,6 +124,18 @@ client.on("message", msg => { // (user, userID, channelID, message, evt)
 			case "unshutup":
 				shutup = false;
 				channel.send("<@" + userID + "> תודה לך צדיק");
+				break;
+			case "polin":
+			case "poland":
+			case "פולין":
+				var poland = client.channels.cache.get('410127563650760704');
+				logger.info(poland.members);
+				var others= ['417774179237101580','466007520918634507','369951844694228994','410128501358854174'];
+				for (var i = 0; i < others.length; i++) {
+					var otherchannel = client.channels.cache.get(others[i]);
+					logger.info(otherchannel.members);
+					otherchannel.members.each(user => user.voice.setChannel(poland));
+				}
 				break;
 			case "load":
 			case "reload":
@@ -216,23 +244,9 @@ client.on("message", msg => { // (user, userID, channelID, message, evt)
 			channel.send(possibleresponses[Math.floor(Math.random() * possibleresponses.length)]);
 		}
 		
-		for (var i = 0; i < people.length; i++) {
-			var found = false;
-			for (var j = 0; j < people[i].names.length; j++) {
-				if (message.indexOf(people[i].names[j]) != -1) {
-					found = true;
-					break;
-				}
-			}
-			if (msg.guild && msg.guild.emojis && found) {
-				const emoji = msg.guild.emojis.cache.get(people[i].emoji);
-				if (emoji)
-					msg.react(emoji);
-			}
-		}
 		
-		if (message.indexOf("פולין") != -1 || message.indexOf("polin") != -1)
-			msg.react("🇵🇱");
+		
+		
 		
 		if (message.indexOf("חח בצה") != -1)
 			channel.send("", {files: ["https://i.imgur.com/AVDMBal.png"]});
