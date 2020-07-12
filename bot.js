@@ -87,7 +87,7 @@ client.on("message", msg => { // (user, userID, channelID, message, evt)
 				var message="";
 
 				var documntation = [
-					"ברוך הבא לגפילטאפיש גרסא 1.1.0",
+					"ברוך הבא לגפילטאפיש גרסא 1.1.1",
 					"מצורפת רשימה של כל הפקודות החוקיות:",
 					"~help " + " קבל את ההודעה הזאת",
 					"~ping " + " בדוק האם הבוט הזה חי",
@@ -129,11 +129,12 @@ client.on("message", msg => { // (user, userID, channelID, message, evt)
 			case "poland":
 			case "פולין":
 				var poland = client.channels.cache.get('410127563650760704');
-				logger.info(poland.members);
-				var others= ['417774179237101580','466007520918634507','369951844694228994','410128501358854174'];
+				var others = msg.guild.channels.cache.filter(c => c.parentID === poland.parentID && c.type === 'voice').array();
 				for (var i = 0; i < others.length; i++) {
-					var otherchannel = client.channels.cache.get(others[i]);
-					logger.info(otherchannel.members);
+					var otherchannel = others[i];
+					if(otherchannel.id === poland.id){
+						continue;
+					}
 					otherchannel.members.each(user => user.voice.setChannel(poland));
 				}
 				break;
@@ -141,13 +142,12 @@ client.on("message", msg => { // (user, userID, channelID, message, evt)
 			case "poland+":
 			case "פולין+":
 				var poland = client.channels.cache.get('410127563650760704');
-				logger.info(poland.members);
-				var others= ['417774179237101580','466007520918634507','369951844694228994','410128501358854174'
-					,'461675499408850954','382239795385991169','560185308285632561','369827042730180619','486149616472162304','450703693956775937','461670721777565706','599668043463000064','370274927279996938'
-					,'369817614890958852','369951011411984385','369951132065464329','369951298436464660','370594969595150356'];
+				var others = msg.guild.channels.cache.filter(c => c.type === 'voice').array();
 				for (var i = 0; i < others.length; i++) {
-					var otherchannel = client.channels.cache.get(others[i]);
-					logger.info(otherchannel.members);
+					var otherchannel = others[i];
+					if(otherchannel.id == poland.id){
+						continue;
+					}
 					otherchannel.members.each(user => user.voice.setChannel(poland));
 				}
 				break;
