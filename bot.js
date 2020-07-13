@@ -167,7 +167,7 @@ client.on("message", msg => {
 				channel_warp(ch_polin, true);
 				break;
 
-			case "Bulgaria":: case "בולגריה":
+			case "Bulgaria": case "בולגריה":
 				channel_warp(ch_bulgaria, false);
 				break;
 
