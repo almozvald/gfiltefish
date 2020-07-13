@@ -64,7 +64,7 @@ var intervaled = function(annoychannel, annoymessage, timesleft , interval) {
 	}
 }
 
-var channel_warp = function(ch_current, plus_mode) {
+var channel_warp = function(msg, ch_current, plus_mode) {
 	var others = msg.guild.channels.cache.filter(c => (c.ch_current === ch_current.parentID || plus_mode) && c.type === 'voice').array();
 	for (var i = 0; i < others.length; i++) {
 		var otherchannel = others[i];
@@ -160,19 +160,19 @@ client.on("message", msg => {
 				break;
 
 			case "polin": case "poland": case "פולין": case "polski":
-				channel_warp(ch_polin, false);
+				channel_warp(msg, ch_polin, false);
 				break;
 
 			case "polin+": case "poland+": case "פולין+": case "polski+":
-				channel_warp(ch_polin, true);
+				channel_warp(msg, ch_polin, true);
 				break;
 
-			case "Bulgaria": case "בולגריה":
-				channel_warp(ch_bulgaria, false);
+			case "bulgaria": case "בולגריה":
+				channel_warp(msg, ch_bulgaria, false);
 				break;
 
-			case "Bulgaria+": case "בולגריה+":
-				channel_warp(ch_bulgaria, true);
+			case "bulgaria+": case "בולגריה+":
+				channel_warp(msg, ch_bulgaria, true);
 				break;
 
 			case "load": case "reload":
