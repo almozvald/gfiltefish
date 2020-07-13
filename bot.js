@@ -65,8 +65,7 @@ var intervaled = function(annoychannel, annoymessage, timesleft , interval) {
 }
 
 var channel_warp = function(msg, ch_current, plus_mode) {
-	var others = plus_mode ? msg.guild.channels.cache.filter(c => c.type === 'voice').array() :
-		msg.guild.channels.cache.filter(c => c.ch_current === ch_current.parentID && c.type === 'voice').array();
+	var others = msg.guild.channels.cache.filter(c => (c.parentID === ch_current.parentID || plus_mode) && c.type === 'voice').array();
 	
 	for (var i = 0; i < others.length; i++) {
 		var otherchannel = others[i];
@@ -90,10 +89,10 @@ client.on("message", msg => {
     }
 
 	if (message.indexOf("פולין") != -1 || message.indexOf("polin") != -1 || message.indexOf("poland") != -1 || message.indexOf("polski") != -1)
-			msg.react("🇵🇱");
+		msg.react("🇵🇱");
 
-    if (message.indexOf("ישראל") != -1 || message.indexOf("israel") != -1)
-            msg.react("🇮🇱");
+	if (message.indexOf("ישראל") != -1 || message.indexOf("israel") != -1)
+		msg.react("🇮🇱");
 
 	for (var i = 0; i < people.length; i++) {
 		var found = false;
