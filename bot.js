@@ -65,7 +65,9 @@ var intervaled = function(annoychannel, annoymessage, timesleft , interval) {
 }
 
 var channel_warp = function(msg, ch_current, plus_mode) {
-	var others = msg.guild.channels.cache.filter(c => (c.ch_current === ch_current.parentID || plus_mode) && c.type === 'voice').array();
+	var others = plus_mode ? msg.guild.channels.cache.filter(c => c.type === 'voice').array() :
+		msg.guild.channels.cache.filter(c => c.ch_current === ch_current.parentID && c.type === 'voice').array();
+	
 	for (var i = 0; i < others.length; i++) {
 		var otherchannel = others[i];
 		if (otherchannel.id == ch_current.id)
