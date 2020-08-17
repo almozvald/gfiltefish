@@ -2,6 +2,7 @@ var Discord = require('discord.js');
 var logger = require('winston');
 var auth = require('./auth.json');
 var data = require('./data.json');
+var sicler = require('./sicler.js');
 var people = data.people;
 var quotes = data.quotes;
 const client = new Discord.Client();
@@ -149,7 +150,10 @@ client.on("message", msg => {
 			case "hello":
 				channel.send("אני חי כמו תמיד");
 				break;
-
+			case "secrethitler":
+			case "sclr":
+				sicler.main(msg,args);
+				break;
 			case "mute": case "shutup":
 				shutup = true;
 				channel.send("<@" + userID + "> טוב אני אשב לי לבד בחושך");
