@@ -277,6 +277,7 @@ exports.main = function(msg,args){
 	var ispublic = (channel.type!= 'dm');
 	//logger.info(channel.type);
 	//logger.info(ispublic);
+	//logger.info(publicchannel);
 	if(ispublic){
 		//logger.info(msg.mentions.members.array());
 		publicchannel = channel;
@@ -395,6 +396,7 @@ exports.main = function(msg,args){
 					liberals_in_hand--;
 				}
 				players[chosen].send(handinfo());
+				mode = 4;
 				break;
 			}
 			if(mode == 4 || mode == 5){
@@ -420,6 +422,9 @@ exports.main = function(msg,args){
 						gameend(2);
 						break;
 					}
+					logger.info(actions);
+					logger.info(num_facist_passed);
+					logger.info(curaction);
 					switch (curaction) {
 						case 1:
 							reshuffle(3);
@@ -450,12 +455,13 @@ exports.main = function(msg,args){
 					}
 					break;
 				}else{
-					publicchannel.send("עבר פאשיסט");
+					publicchannel.send("עבר ליברל");
 					num_liberal_passed++;
 					if(num_liberal_passed==5){
 						gameend(0);
 						return;
 					}
+					normalforward();
 					break;
 				}
 			}
@@ -505,9 +511,6 @@ exports.main = function(msg,args){
 			}
 			break;
 		case "select":
-			logger.info(msg.author);
-			logger.info(players[0]);
-			logger.info(getindex(msg.author));
 			if(getindex(msg.author)!=current){
 				channel.send("לא הפרסידנט");
 				break;
@@ -517,16 +520,13 @@ exports.main = function(msg,args){
 				break;
 			}
 			var oth=getindex(msg.mentions.members.array()[0]);
-			logger.info(oth);
-			logger.info(msg.mentions.members.array()[0]);
-			logger.info(players[0]);
 			if(oth == -1 || oth == current || dead[oth]) {
 				channel.send("לא בן אדם חוקי לבחירה");
 				break;
 			}
 			if(mode==1){ //choose
 				var message="";
-				message += " הפרסידנט";
+				message += " הפרסידנט ";
 				message += get_name(current);
 				message += " בחר את הקנסלור ";
 				message += get_name(oth);
@@ -544,7 +544,7 @@ exports.main = function(msg,args){
 			}
 			if(mode==6){ // question
 				var message="";
-				message += " הפרסידנט";
+				message += " הפרסידנט ";
 				message += get_name(current);
 				message += " בחר לחקור את ";
 				message += get_name(oth);
@@ -562,7 +562,7 @@ exports.main = function(msg,args){
 			}
 			if(mode==7){ // choose nekt
 				var message="";
-				message += " הפרסידנט";
+				message += " הפרסידנט ";
 				message += get_name(current);
 				message += " בחר את ";
 				message += get_name(oth);
@@ -576,7 +576,7 @@ exports.main = function(msg,args){
 			}
 			if(mode==8){ // kill
 				var message="";
-				message += " הפרסידנט";
+				message += " הפרסידנט ";
 				message += get_name(current);
 				message += " בחר להרוג את ";
 				message += get_name(oth);
