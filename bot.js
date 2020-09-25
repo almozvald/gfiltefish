@@ -283,6 +283,14 @@ client.on("message", msg => {
 			var possible_responses = ["1+e^i(pi)", "0", "אפס"];
 			channel.send(possible_responses[Math.floor(Math.random() * possible_responses.length)]);
 		}
+		
+		if (message.indexOf("שובל") != -1 || message.indexOf("386629792038125578") != -1) {
+			var possible_responses = ["בכיינית", "סתומה"];
+			channel.send(possible_responses[Math.floor(Math.random() * possible_responses.length)]);
+		}
+		
+		if (message.indexOf("אביבי") != -1 || message.indexOf("451702771754729472") != -1)
+			channel.send("מכוער");
 
 		if (message.indexOf("חח בצה") != -1)
 			channel.send("", {files: ["https://i.imgur.com/AVDMBal.png"]});
