@@ -38,6 +38,7 @@ client.on("ready", () => {
 	ch_general   = client.channels.cache.get('369817614890958852');
 	ch_polin     = client.channels.cache.get('410127563650760704');
 	ch_bulgaria  = client.channels.cache.get('417774179237101580');
+	ch_taibe     = client.channels.cache.get('767529428569554944');
 	ch_natania   = client.channels.cache.get('466007520918634507');
 	ch_georgia   = client.channels.cache.get('731917741891649627');
 	ch_gointg    = client.channels.cache.get('369951844694228994');
@@ -178,6 +179,14 @@ client.on("message", msg => {
 
 			case "bulgaria+": case "בולגריה+":
 				channel_warp(msg, ch_bulgaria, true);
+				break;
+				
+			case "taibe": case "טייבה": case: "kanfe" case: "כנאפה"
+				channel_warp(msg, ch_taibe, false);
+				break;
+
+			case "taibe+": case "טייבה+": case: "kanfe+" case: "כנאפה+"
+				channel_warp(msg, ch_taibe, true);
 				break;
 
 			case "load": case "reload":
