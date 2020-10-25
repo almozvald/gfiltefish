@@ -181,11 +181,11 @@ client.on("message", msg => {
 				channel_warp(msg, ch_bulgaria, true);
 				break;
 				
-			case "taibe": case "טייבה": case: "kanfe" case: "כנאפה"
+			case "taibe": case "טייבה": case: "kanfe": case: "כנאפה":
 				channel_warp(msg, ch_taibe, false);
 				break;
 
-			case "taibe+": case "טייבה+": case: "kanfe+" case: "כנאפה+"
+			case "taibe+": case "טייבה+": case: "kanfe+": case: "כנאפה+":
 				channel_warp(msg, ch_taibe, true);
 				break;
 
