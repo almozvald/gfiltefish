@@ -216,11 +216,11 @@ client.on("message", msg => {
 				channel_warp(msg, ch_simptime, true);
 				break;
 				
-			case "boob": case "bob": case: "sagiv" case: "kennn"
+			case "boob": case "bob": case "sagiv": case "kennn":
 				channel_warp(msg, ch_sagiv, false);
 				break;
 
-			case "boob+": case "bob+": case: "sagiv+" case: "kennn+"
+			case "boob+": case "bob+": case "sagiv+": case "kennn+":
 				channel_warp(msg, ch_sagiv, true);
 				break;
 				
@@ -232,11 +232,11 @@ client.on("message", msg => {
 				channel_warp(msg, ch_chill, true);
 				break;
 				
-			case "jakuzi": case: "גקוזי" case : "ג'קוזי"
+			case "jakuzi": case "גקוזי": case "ג'קוזי":
 				channel_warp(msg, ch_jakuzi, false);
 				break;
 
-			case "jakuzi+": case: "גקוזי+" case : "ג'קוזי+"
+			case "jakuzi+": case "גקוזי+": case "ג'קוזי+":
 				channel_warp(msg, ch_jakuzi, true);
 				break;
 
