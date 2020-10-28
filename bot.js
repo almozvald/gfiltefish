@@ -39,10 +39,12 @@ client.on("ready", () => {
 	ch_polin     = client.channels.cache.get('410127563650760704');
 	ch_bulgaria  = client.channels.cache.get('417774179237101580');
 	ch_taibe     = client.channels.cache.get('767529428569554944');
-	ch_natania   = client.channels.cache.get('466007520918634507');
-	ch_georgia   = client.channels.cache.get('731917741891649627');
-	ch_gointg    = client.channels.cache.get('369951844694228994');
-	ch_meandbois = client.channels.cache.get('410128501358854174');
+	ch_ramle     = client.channels.cache.get('466007520918634507');
+	ch_simptime  = client.channels.cache.get('731917741891649627');
+	ch_chill     = client.channels.cache.get('765271697729126451');
+	ch_sagiv     = client.channels.cache.get('765270690936782888');
+	ch_sadzone   = client.channels.cache.get('765904713312239636');
+	ch_jakuzi    = client.channels.cache.get('757558847769673761');
 });
 
 var curchannel;
@@ -121,7 +123,7 @@ client.on("message", msg => {
 				var message="";
 
 				var documntation = [
-					"ברוך הבא לגפילטאפיש גרסא 1.1.2",
+					"ברוך הבא לגפילטאפיש גרסא 1.2.0",
 					"מצורפת רשימה של כל הפקודות החוקיות:",
 					"~help " + " קבל את ההודעה הזאת",
 					"~ping " + " בדוק האם הבוט הזה חי",
@@ -151,10 +153,11 @@ client.on("message", msg => {
 			case "hello":
 				channel.send("אני חי כמו תמיד");
 				break;
-			case "secrethitler":
-			case "sclr":
+				
+			case "secrethitler": case "sclr":
 				sicler.main(msg,args);
 				break;
+				
 			case "mute": case "shutup":
 				shutup = true;
 				channel.send("<@" + userID + "> טוב אני אשב לי לבד בחושך");
@@ -187,6 +190,54 @@ client.on("message", msg => {
 
 			case "taibe+": case "טייבה+": case "kanfe+": case "כנאפה+":
 				channel_warp(msg, ch_taibe, true);
+				break;
+				
+			case "ramle": case "רמלה":
+				channel_warp(msg, ch_ramle, false);
+				break;
+
+			case "ramle+": case "רמלה+":
+				channel_warp(msg, ch_ramle, true);
+				break;
+				
+			case "sad":
+				channel_warp(msg, ch_sadzone, false);
+				break;
+
+			case "sad+":
+				channel_warp(msg, ch_sadzone, true);
+				break;
+				
+			case "simp":
+				channel_warp(msg, ch_simptime, false);
+				break;
+
+			case "simp+":
+				channel_warp(msg, ch_simptime, true);
+				break;
+				
+			case "boob": case "bob": case: "sagiv" case: "kennn"
+				channel_warp(msg, ch_sagiv, false);
+				break;
+
+			case "boob+": case "bob+": case: "sagiv+" case: "kennn+"
+				channel_warp(msg, ch_sagiv, true);
+				break;
+				
+			case "chill":
+				channel_warp(msg, ch_chill, false);
+				break;
+
+			case "chill+":
+				channel_warp(msg, ch_chill, true);
+				break;
+				
+			case "jakuzi": case: "גקוזי" case : "ג'קוזי"
+				channel_warp(msg, ch_jakuzi, false);
+				break;
+
+			case "jakuzi+": case: "גקוזי+" case : "ג'קוזי+"
+				channel_warp(msg, ch_jakuzi, true);
 				break;
 
 			case "load": case "reload":
