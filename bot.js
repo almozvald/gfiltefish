@@ -287,7 +287,9 @@ client.on("message", msg => {
 			channel.send(possible_responses[Math.floor(Math.random() * possible_responses.length)] + "\n נסה ~help לעזרה בשביל להבין עלי יותר");
 			return;
 		}
-
+		if(shutup){
+			return;
+		}
 		if (message.indexOf("כרמי") != -1 || message.indexOf("282820918298804224") != -1) {
 			var possible_responses = ["1+e^i(pi)", "0", "אפס"];
 			channel.send(possible_responses[Math.floor(Math.random() * possible_responses.length)]);
