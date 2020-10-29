@@ -37,7 +37,7 @@ client.on("ready", () => {
 	// Setting channels IDs
 	ch_general   = client.channels.cache.get('369817614890958852');
 	ch_polin     = client.channels.cache.get('410127563650760704');
-	ch_bulgaria  = client.channels.cache.get('417774179237101580');
+	ch_bulgaria  = client.channels.cache.get('771521013170831360');
 	ch_taibe     = client.channels.cache.get('767529428569554944');
 	ch_ramle     = client.channels.cache.get('466007520918634507');
 	ch_simptime  = client.channels.cache.get('731917741891649627');
