@@ -79,7 +79,7 @@ var channel_warp = function(msg, ch_current, plus_mode) {
 		otherchannel.members.each(user => user.voice.setChannel(ch_current));
 	}
 }
-
+var shhushed = [{id:"282820918298804224",chance:0.05}];
 client.on("message", msg => {
 	var message   = msg.content;
 	var user      = msg.author;
@@ -325,7 +325,31 @@ client.on("message", msg => {
 			case "allquote": case "allq":
 				allquote(channelID);
 				break;
-
+				
+			case "shhh":
+				if(args.length>=1){
+					var arr = msg.mentions.members.array();
+					var chancee = Number(args[0])/100.0;
+					for (var i = 0; i < arr.length; i++) {
+						logger.info("shhhing:");
+						var idd = msg.mentions.members.array()[i].id;
+						logger.info(idd);
+						var ok = true;
+						for (var j = 0; j < shhushed.length; j++) {
+							if(shhushed[j].id==idd){
+								shhushed[j].chance = chancee;
+								ok = false;
+							}
+						}
+						
+						if(ok){
+							logger.info({id:idd,chance:chancee});
+							shhushed = shhushed.concat([{id:idd,chance:chancee}]);
+						}
+					}
+				}
+				break;
+				
 			default :
 				channel.send(":לא ממש הבנתי מה אתה מנסה להגיד הפקודות החוקיות הן" + "\n~help");
 		}
@@ -359,9 +383,21 @@ client.on("message", msg => {
 
 		if (message.indexOf("אמור") != -1)
 			channel.send("אמור זה שם של דג");
-
-		if (Math.random() < ((userID == "282820918298804224") ? 0.05 : 0.01)) {
-			var possible_responses = ['שתוק'];
+		var ok= true;
+		logger.info(userID);
+		for (var i = 0; i < shhushed.length; i++) {
+			logger.info(shhushed[i]);
+			if(shhushed[i].id==userID){
+				ok=false;
+				if (Math.random() < shhushed[i].chance) {
+					var possible_responses = ['שתוק','סתום','שתוק את פיך'];
+					channel.send("<@" + userID + "> " + possible_responses[Math.floor(Math.random() * possible_responses.length)]);
+					logger.info("answering random message");
+				}
+			}
+		}
+		if (ok && Math.random() < ((userID == "282820918298804224") ? 0.05 : 0.01)) {
+			var possible_responses = ['שתוק','סתום','שתוק את פיך'];
 			channel.send("<@" + userID + "> " + possible_responses[Math.floor(Math.random() * possible_responses.length)]);
 			logger.info("answering random message");
 		}
